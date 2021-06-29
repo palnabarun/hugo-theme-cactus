@@ -35,6 +35,28 @@
   {{ partial "optional-about.html" . }}
   </section>
 
+  {{ if .Site.Params.favoriteSection.show }}
+  <section id="writing">
+    <span class="h1">{{ .Site.Params.favoriteSection.title }}</span>
+
+
+    {{ $dataFormat := .Site.Params.dateFormat | default "2006-01-02" }}
+    {{ $favoritePosts := (sort ( where ( where site.RegularPages "Params.favorite" true) "Type" "in" .Site.Params.favoriteSection.sourceType ) "Date" "desc") }}
+
+    <ul class="post-list">
+    {{ range (first .Site.Params.favoriteSection.count $favoritePosts) }}
+    <li class="post-item">
+      <div class="meta"><time datetime="{{ time .Date }}" itemprop="datePublished">{{ .Date.Format $dataFormat }}</time>
+      </div>
+      <span><a href="{{ .Permalink }}">{{ if .Title }} {{- .Title -}} {{ else }} {{- print "Untitled" -}}{{ end
+          }}</a></span>
+    </li>
+    {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+
   {{ if .Site.Params.showMainSection }}
   <section id="writing">
     <span class="h1"><a href="{{ .Site.Params.mainSection | absURL }}">{{ .Site.Params.mainSectionTitle | default "Writings" }}</a></span>
