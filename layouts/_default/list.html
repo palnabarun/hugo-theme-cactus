@@ -1,4 +1,7 @@
 {{ define "main"}}
+
+{{ .Content }}
+
 <div id="archive">
   <ul class="post-list">
   {{ range (sort .Paginator.Pages "Date" "desc") }}
