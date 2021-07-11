@@ -52,6 +52,12 @@
           }}</a></span>
     </li>
     {{ end }}
+    {{ if .Site.Params.favoriteSection.allLink }}
+    <li class="post-item">
+      <div class="meta"></div>
+      <div class="read-more"><a href="/{{ .Site.Params.favoriteSection.sourceType }}">{{ .Site.Params.favoriteSection.allLinkText }}</a></div>
+    </li>
+    {{ end }}
     </ul>
   </section>
   {{ end }}
