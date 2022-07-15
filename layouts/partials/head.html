@@ -36,4 +36,7 @@
     {{ template "_internal/google_analytics.html" . }}
   {{ end }}
   {{ end }}
+  {{ if .Site.Params.analytics.plausible }}
+    <script defer data-domain="{{ .Site.Params.analytics.plausible.dataDomain }}" src="{{ .Site.Params.analytics.plausible.scriptSrc }}"></script>
+  {{ end }}
 </head>
