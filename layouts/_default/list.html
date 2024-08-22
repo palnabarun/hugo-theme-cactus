@@ -1,6 +1,10 @@
 {{ define "main"}}
 
-{{ .Content }}
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="content" itemprop="articleBody">
+    {{ .Content }}
+  </div>
+</article>
 
 <div id="archive">
   <ul class="post-list">
@@ -20,7 +24,7 @@
       <div class="meta">
         <time datetime="{{ time .Date }}" itemprop="datePublished">{{ .Date.Format (.Site.Params.dateFormat | default "2006-01-02") }}</time>
       </div>
-      <span>    
+      <span>
         <a class="" href="{{ .Permalink }}">{{ if .Title }} {{ .Title }} {{ else }} Untitled {{ end }}</a>
       </span>
     </li>
